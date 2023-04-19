@@ -1,0 +1,115 @@
+body {
+  margin: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+h1{
+  margin: 0 0 20px 0;
+  font-size: medium;
+  color: white;
+}
+
+.q-and-a {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 50px;
+  display: flex;
+}
+
+.question {
+  flex: 1;
+  color: white;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.answer {
+  flex: 1;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.answer-buttons {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+}
+
+.answer-button {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.answer-button.selected {
+  background-color: #000;
+  color: #fff;
+}
+
+/* QandA.css */
+:root {
+  --green: green;
+  --gray: gray;
+  --blue: blue;
+}
+
+.q-and-a {
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.question {
+  padding: 10px;
+  color: white;
+  font-size: 0.9rem;
+  border-radius: 5px 0 0 5px;
+}
+
+.answer {
+  padding: 10px;
+}
+
+.answer-item {
+  margin: 5px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  border: 1px solid white;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.edit-button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.submit-button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}

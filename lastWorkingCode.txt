@@ -1,0 +1,205 @@
+import React, { useState, useEffect } from 'react';
+import data from '../questions.json';
+
+const QandA = () => {
+  const [editMode, setEditMode] = useState(false);
+  const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [initialAnswers, setInitialAnswers] = useState({});
+  
+  useEffect(() => {
+    const initialSelectedAnswers = {};
+    data.forEach((item) => {
+      initialSelectedAnswers[item.id] = item.answer;
+    });
+    setSelectedAnswers(initialSelectedAnswers);
+    setInitialAnswers(initialSelectedAnswers);
+  }, []);
+
+  const handleEditClick = () => {
+    setEditMode(!editMode);
+  };
+
+  const handleAnswerSelect = (questionId, answer) => {
+    setSelectedAnswers({
+      ...selectedAnswers,
+      [questionId]: answer
+    });
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const updatedData = data.map((item) => ({
+      answer: selectedAnswers[item.id] || item.answer
+    }));
+    console.log(updatedData);
+  };
+
+  return (
+    <div className="q-and-a">
+      <h1 style={{ textAlign: 'center' }}>SURVEY RESPONSES</h1>
+      <form onSubmit={handleFormSubmit}>
+        {data.map((item) => (
+          <div key={item.id} className="q-and-a-item" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+            <div className="question" style={{ width: '70%' }}>{item.question}</div>
+            <div className="answer">
+              {editMode ? (
+                item.options.map((option) => (
+                  <button
+                    key={option}
+                    className="answer-item"
+                    style={{
+                      backgroundColor: selectedAnswers[item.id] === option ? 'green' : 'white',
+                      color: 'black',
+                      fontWeight: selectedAnswers[item.id] === option ? 'bold' : 'normal',
+                      border: selectedAnswers[item.id] === option ? '2px solid green' : 'none'
+                    }}
+                    onClick={() => handleAnswerSelect(item.id, option)}
+                  >
+                    {option}
+                  </button>
+                ))
+              ) : (
+                <span
+                  className="answer-item"
+                  style={{
+                    backgroundColor: 'white',
+                    color: 'black'
+                  }}
+                >
+                  {item.answer}
+                </span>
+              )}
+            </div>
+          </div>
+        ))}
+        <div className="button-container">
+          <button
+            className="edit-button"
+            onClick={handleEditClick}
+            style={{ backgroundColor: "gray" }}
+          >
+            {editMode ? 'Cancel' : 'Edit'}
+          </button>
+          <button
+            className="submit-button"
+            style={{
+              backgroundColor: 'blue',
+            }}
+            type="submit"
+          >
+            {editMode ? 'Save and Submit' : 'Submit'}
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default QandA;
+
+_-_-_-_-_-_-_-_---_-_-_-_-_-_-_-_-_-_-_-_________-------------------------------
+import React, { useState } from 'react';
+import data from '../questions.json';
+
+const QandA = () => {
+  const [editMode, setEditMode] = useState(false);
+  const [selectedAnswers, setSelectedAnswers] = useState({});
+
+  const handleEditClick = () => {
+    setEditMode(!editMode);
+  };
+
+  const handleAnswerSelect = (questionId, answer) => {
+    setSelectedAnswers({
+      ...selectedAnswers,
+      [questionId]: answer
+    });
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    const updatedData = data.map((item) => ({
+      ...item,
+      answer: selectedAnswers[item.id] || item.answer
+    }));
+
+    // Do something with the updated data, such as saving it to a database or file
+    console.log(updatedData);
+  };
+
+  const variables = {
+    editButtonBackground: editMode ? 'green' : 'gray',
+    submitButtonBackground: editMode ? 'gray' : 'blue',
+    submitButtonOpacity: editMode ? 0.5 : 1,
+    submitButtonCursor: editMode ? 'default' : 'pointer',
+    answerItemBackground: editMode ? 'white' : 'white',
+    answerItemColor: editMode ? 'black' : 'black'
+  };
+
+  return (
+    <div className="q-and-a">
+      <h1 style={{ textAlign: 'center' }}>SURVEY RESPONSES</h1>
+      <form onSubmit={handleFormSubmit}>
+        {data.map((item) => (
+          <div key={item.id} className="q-and-a-item" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+            <div className="question" style={{ width: '70%' }}>{item.question}</div> {/* Set width of question container */}
+            <div className="answer" style={{ width: '30%' }}>{/* Set width of answer container */}
+              {editMode ? (
+                item.options.map((option) => (
+                  <button
+                    key={option}
+                    className="answer-item"
+                    style={{
+                      backgroundColor: selectedAnswers[item.id] === option ? 'green' : variables.answerItemBackground,
+                      color: variables.answerItemColor,
+                      fontWeight: selectedAnswers[item.id] === option ? 'bold' : 'normal',
+                      border: selectedAnswers[item.id] === option ? '2px solid green' : 'none'
+                    }}
+                    onClick={() => handleAnswerSelect(item.id, option)}
+                  >
+                    {option}
+                  </button>
+                ))
+              ) : (
+                <span
+                  className="answer-item"
+                  style={{
+                    backgroundColor: variables.answerItemBackground,
+                    color: variables.answerItemColor
+                  }}
+                >
+                  {selectedAnswers[item.id] || item.answer}
+                </span>
+              )}
+            </div>
+          </div>
+        ))}
+        <div className="button-container">
+          <button
+            className="edit-button"
+            onClick={handleEditClick}
+            style={{ backgroundColor: `var(--${variables.editButtonBackground})` }}
+          >
+            {editMode ? 'Save' : 'Edit'}
+          </button>
+          <button
+            className="submit-button"
+            disabled={editMode}
+            style={{
+              backgroundColor: `var(--${variables.submitButtonBackground})`,
+              opacity: variables.submitButtonOpacity,
+              cursor: variables.submitButtonCursor
+            }}
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+
+  );
+};
+
+export default QandA;

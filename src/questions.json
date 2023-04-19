@@ -1,0 +1,32 @@
+[
+    {
+      "id": 1,
+      "question": "What is the capital of France?",
+      "options": ["Berlin", "Paris", "London", "Rome"],
+      "answer": "Paris"
+    },
+    {
+      "id": 2,
+      "question": "Breakfast is the most important meal of the day. True or False?",
+      "options": ["True", "False"],
+      "answer": "True"
+    },
+    {
+      "id": 3,
+      "question": "What is the largest animal on Earth?",
+      "options": ["Elephant", "Whale", "Giraffe"],
+      "answer": "Whale"
+    },
+    {
+      "id": 4,
+      "question": "Who is the author of the Harry Potter series?",
+      "options": ["J.K. Rowling", "Stephenie Meyer", "George R.R. Martin", "Suzanne Collins"],
+      "answer": "J.K. Rowling"
+    },
+    {
+      "id": 5,
+      "question": "Which country won the 2018 FIFA World Cup?",
+      "options": ["France", "Brazil", "Germany", "Spain"],
+      "answer": "France"
+    }
+  ]
