@@ -70,7 +70,7 @@ const QandA = () => {
                   className="answer-item"
                   style={{
                     backgroundColor: 'rgba(0,0,0,0.3)',
-                    color: 'red'
+                    color: 'white'
                   }}
                 >
                   {item.answer}
