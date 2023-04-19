@@ -59,7 +59,7 @@ const QandA = () => {
                       backgroundColor: 'rgba(0,0,0,0.3)',
                       color: selectedAnswers[item.id] === option ? 'white': 'rgba(0,0,0,0.8)',
                       fontWeight: selectedAnswers[item.id] === option ? 'bold' : 'normal',
-                      border: '1px solid white'
+                      border: '1px solid white',
                     }}
                     onClick={() => handleAnswerSelect(item.id, option)}
                   >
